@@ -57,13 +57,16 @@ TOKEN_LIFESPAN_SECONDS = 1800
 # --- Funções de Lógica da API ---
 
 def obter_token_sistema():
-    """
-    Obtém o token de autenticação do sistema da API Sophia, utilizando um cache
-    para evitar requisições desnecessárias.
+    """Obtém o token de autenticação do sistema da API Sophia.
+
+    Utiliza um mecanismo de cache em memória para armazenar o token e evitar
+    requisições repetidas à API, melhorando a performance. O token é
+    renovado automaticamente quando expira.
 
     Returns:
-        str: O token de autenticação, se obtido com sucesso.
-        None: Se ocorrer um erro na comunicação com a API.
+        str: O token de autenticação do sistema.
+        None: Em caso de falha na comunicação com a API ou se a resposta
+              for inválida.
     """
     # 1. Verifica se o token em cache ainda é válido
     if token_cache["token"] and time.time() < token_cache["expires_at"]:
@@ -100,17 +103,22 @@ def obter_token_sistema():
         return None
 
 def validar_login_aluno(token, codigo, senha):
-    """
-    Valida as credenciais de login de um aluno junto à API Sophia.
+    """Valida as credenciais de login de um aluno na API Sophia.
+
+    Envia o código e a senha do aluno para o endpoint de validação da API,
+    utilizando o token de sistema para autenticação.
 
     Args:
-        token (str): O token de autenticação do sistema.
-        codigo (str): O código (RM) do aluno.
-        senha (str): A senha do aluno.
+        token (str): O token de autenticação do sistema, obtido através da
+                     função `obter_token_sistema`.
+        codigo (str): O código de matrícula (RM) do aluno.
+        senha (str): A senha de acesso do aluno.
 
     Returns:
-        dict: A resposta da API em formato JSON se a validação for bem-sucedida.
-        None: Se ocorrer um erro de comunicação ou a resposta for inválida.
+        dict: Um dicionário com a resposta da API em formato JSON,
+              se a validação for bem-sucedida.
+        None: Se ocorrer um erro de comunicação, a resposta da API for
+              inválida (ex: não for um JSON válido) ou a requisição falhar.
     """
     validation_url = f"{API_BASE_URL}/api/v1/Alunos/ValidarLogin"
     payload = {"codigo": codigo, "senha": senha}
@@ -119,7 +127,7 @@ def validar_login_aluno(token, codigo, senha):
     try:
         response = requests.post(validation_url, headers=headers, json=payload, timeout=30)
         response.raise_for_status()  # Garante o tratamento de erros HTTP
-        
+
         # Tenta decodificar a resposta JSON. Se falhar, captura a exceção.
         return response.json()
 
@@ -135,6 +143,21 @@ def validar_login_aluno(token, codigo, senha):
 @app.route('/', methods=['GET', 'POST'])
 @limiter.limit("10 per minute") # Aplica o limite de 10 tentativas por minuto por IP
 def login():
+    """Renderiza a página de login e processa a autenticação do usuário.
+
+    No método GET, exibe o formulário de login. Se o usuário já estiver
+    logado na sessão, redireciona para o portal.
+
+    No método POST, valida as credenciais (código e senha) fornecidas no
+    formulário. Se a autenticação for bem-sucedida, armazena os dados do
+    usuário na sessão e o redireciona para o portal. Em caso de falha,
+    exibe uma mensagem de erro.
+
+    Returns:
+        werkzeug.wrappers.Response: Um objeto de resposta do Flask, que pode
+        ser a renderização de um template (login.html) ou um redirecionamento
+        para outra rota (`/portal`).
+    """
     # Se o usuário já está logado, redireciona para o portal
     if 'usuario_logado' in session:
         return redirect(url_for('portal'))
@@ -163,7 +186,7 @@ def login():
             # Assumindo que a API retorna esses campos. Ajustar conforme a resposta real.
             session['aluno_id'] = resposta_validacao.get('alunoId', codigo_usuario)
             session['aluno_nome'] = resposta_validacao.get('nome', 'Estudante')
-            
+
             logging.info(f"Login bem-sucedido para o usuário com código: {codigo_usuario}")
             return redirect(url_for('portal'))
         else:
@@ -176,16 +199,38 @@ def login():
 
 @app.route('/portal')
 def portal():
+    """Exibe a página principal do portal do aluno.
+
+    Esta rota é protegida e só pode ser acessada por usuários autenticados.
+    Se um usuário não logado tentar acessar, ele é redirecionado para a
+    página de login. A página do portal exibe uma mensagem de boas-vindas
+    com o nome do aluno, que é recuperado da sessão.
+
+    Returns:
+        werkzeug.wrappers.Response: Um objeto de resposta do Flask, que pode
+        ser a renderização do template `portal.html` ou um redirecionamento
+        para a rota de login (`/`).
+    """
     # Protege a rota, garantindo que apenas usuários autenticados possam acessá-la
     if 'usuario_logado' not in session:
         flash('Você precisa fazer login para acessar esta página.')
         return redirect(url_for('login'))
-    
+
     # Passa as informações do usuário da sessão para o template
     return render_template('portal.html', nome_aluno=session.get('aluno_nome'))
 
 @app.route('/logout')
 def logout():
+    """Realiza o logout do usuário.
+
+    Limpa todos os dados da sessão do usuário, efetivamente desconectando-o
+    do sistema. Após o logout, exibe uma mensagem de sucesso e redireciona
+    o usuário para a página de login.
+
+    Returns:
+        werkzeug.wrappers.Response: Um objeto de resposta do Flask, que
+        redireciona o usuário para a rota de login (`/`).
+    """
     # Limpa todos os dados da sessão
     usuario_id = session.get('aluno_id', 'desconhecido')
     session.clear()
