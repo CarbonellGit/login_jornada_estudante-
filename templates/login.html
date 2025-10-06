@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF--8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Portal de Acessos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        
+        <div class="login-logo-container">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Colégio Carbonell">
+        </div>
+
+        <h1>Jornada do Estudante</h1>
+        <p>Por favor, utilize seu código e senha para continuar.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-danger">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="post" class="login-form">
+            <label for="codigo" class="sr-only">Código de Usuário</label>
+            <input type="text" id="codigo" name="codigo" placeholder="Código de Usuário" required>
+            
+            <label for="senha" class="sr-only">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Senha" required>
+            
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
