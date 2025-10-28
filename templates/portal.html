@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
+<!--
+    Arquivo: templates/portal.html
+    Descrição: Página informativa "Jornada do Estudante" usada pelo Colégio Carbonell.
+    Objetivo dos comentários: proporcionar documentação em Português (Brasil) diretamente
+    neste template para facilitar customizações futuras por desenvolvedores ou equipe
+    pedagógica. Os comentários não alteram a aparência ou o comportamento da página.
+
+    Principais seções:
+    - <head>: metadados, fontes e estilos.
+    - <body>: estrutura principal com header, conteúdo em accordion e footer.
+    - <script>: lógica JavaScript para accordion e tabs.
+
+    Observações de manutenção:
+    - Ao editar os textos visíveis, preserve as classes Tailwind para manter o estilo.
+    - Ao alterar IDs usados por tabs/accordion, verifique o script no final do arquivo.
+    - Imagens estáticas locais ficam em `static/img/`.
+-->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,6 +83,11 @@
 
 <body class="text-gray-800">
 
+    <!--
+        Container principal da página.
+        - Mantém a largura máxima e o padding utilizados em todo o layout.
+        - Para alterar o espaçamento global, ajuste as classes Tailwind (p-*, mx-*, max-w-*).
+    -->
     <div class="container mx-auto max-w-6xl px-4 py-8 sm:py-12">
 
         <header class="flex justify-between items-center mb-10 pb-4 border-b border-gray-200">
@@ -81,7 +104,16 @@
             <img src="https://i.postimg.cc/wvdZrMwx/soucarbonell.png" alt="Banner da Jornada do Estudante" class="w-full h-auto rounded-xl shadow-md">
         </header>
 
-        <main id="main-content" class="space-y-5">
+                <!--
+                        Main content: contém uma série de blocos "accordion-item".
+                        Estrutura de cada bloco (simplificada):
+                        <div class="accordion-item">        (bloco externo com sombra/borda)
+                            <button class="accordion-header">   (cabeçalho clicável que abre/fecha)
+                            <div class="accordion-content">    (conteúdo escondido/visível)
+                        Para adicionar um novo passo, copie um dos blocos existentes e atualize os textos
+                        garantindo que as classes e a hierarquia HTML sejam preservadas.
+                -->
+                <main id="main-content" class="space-y-5">
 
             <div class="accordion-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
                 <button
@@ -413,6 +445,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
 
+            // Lógica do Accordion (em Português):
+            // - Cada botão que abre/fecha um item tem a classe .accordion-header.
+            // - O conteúdo associado é o elemento irmão seguinte (.accordion-content).
+            // - A classe .open é usada tanto no header quanto no conteúdo para controlar
+            //   a apresentação via CSS (ex.: max-height e rotação da seta).
+            // - Ao abrir um item, os demais abertos são fechados automaticamente.
+            // - Se alterar os nomes das classes, atualize este script.
             // --- Accordion Logic ---
             const accordionHeaders = document.querySelectorAll('.accordion-header');
             accordionHeaders.forEach(header => {
@@ -437,6 +476,12 @@
                 });
             });
 
+            // Lógica das Tabs (em Português):
+            // - Cada bloco de tabs usa .tabs-container e contém botões com .tab-btn.
+            // - Os botões possuem um atributo data-target com o id do conteúdo correspondente.
+            // - A classe .active em .tab-btn e .tab-content controla o estado visível.
+            // - Ao clicar em uma tab, removemos .active de todas e aplicamos apenas à selecionada.
+            // - Se você adicionar novas tabs, defina corretamente o data-target e o id do conteúdo.
             // --- Tabs Logic ---
             const tabContainers = document.querySelectorAll('.tabs-container');
             tabContainers.forEach(container => {
@@ -471,5 +516,3 @@
 </body>
 
 </html>
-
-
