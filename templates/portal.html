@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,57 +28,69 @@
             font-family: 'Inter', sans-serif;
             background-color: #FDFBF8;
         }
+
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
         .accordion-content.open {
             max-height: 2000px;
         }
+
         .accordion-header .arrow {
             transition: transform 0.3s ease-in-out;
         }
+
         .accordion-header.open .arrow {
             transform: rotate(45deg);
         }
+
         .tab-btn.active {
             background-color: #1A3A6A;
             color: white;
             border-color: #1A3A6A;
         }
+
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
         }
     </style>
 </head>
+
 <body class="text-gray-800">
 
     <div class="container mx-auto max-w-6xl px-4 py-8 sm:py-12">
-        
+
         <header class="flex justify-between items-center mb-10 pb-4 border-b border-gray-200">
-            <h1 class="text-3xl font-bold text-carbonell-blue">Jornada do Estudante</h1>
-            <a href="{{ url_for('logout') }}" class="bg-carbonell-red text-white font-bold py-2 px-5 rounded-lg transition hover:bg-red-700">
+            <div class="flex items-center">
+                <img src="static/img/logo.png" alt="Logo Colégio Carbonell" class="h-26 sm:h-28">
+            </div>
+            <a href="{{ url_for('logout') }}"
+                class="bg-carbonell-red text-white font-bold py-2 px-5 rounded-lg transition hover:bg-red-700">
                 Sair
             </a>
         </header>
 
         <header id="main-header" class="mb-12">
-             <img src="https://i.postimg.cc/wvdZrMwx/soucarbonell.png" alt="Banner da Jornada do Estudante" class="w-full h-auto rounded-xl shadow-md">
+            <img src="https://i.postimg.cc/wvdZrMwx/soucarbonell.png" alt="Banner da Jornada do Estudante" class="w-full h-auto rounded-xl shadow-md">
         </header>
 
         <main id="main-content" class="space-y-5">
 
             <div class="accordion-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                <button class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
+                <button
+                    class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
                     <div class="flex items-center">
                         <span class="text-5xl mr-6">📄</span>
                         <div>
                             <span class="text-sm font-semibold text-carbonell-blue uppercase">PASSO 1</span>
-                            <h2 class="text-2xl font-semibold text-carbonell-blue">O Ponto de Partida: RM</h2>
+                            <h2 class="text-2xl font-semibold text-carbonell-blue">O Ponto de Partida: RM (Registro de Mátricula) </h2>
                         </div>
                     </div>
                     <span class="arrow text-4xl text-carbonell-blue transform">+</span>
@@ -85,136 +98,142 @@
                 <div class="accordion-content">
                     <div class="p-8 border-t border-gray-200 bg-gray-50 text-base">
                         <h3 class="font-semibold text-xl mb-3">O que é o RM?</h3>
-                        <p class="mb-4">O <strong>RM (Registro de Matrícula)</strong> é o número de identificação principal do estudante no colégio. Guarde este número, pois ele será útil em diversas situações durante o ano.</p>
-                        <div class="bg-blue-100 border-l-4 border-carbonell-blue text-carbonell-blue p-5 rounded-r-lg mb-4">
+                        <p class="mb-4">O RM (Registro de Matrícula) é o número de identificação
+                            principal do estudante no colégio. Guarde este número, pois ele será útil em diversas
+                            situações durante o ano.</p>
+                        <div
+                            class="bg-blue-100 border-l-4 border-carbonell-blue text-carbonell-blue p-5 rounded-r-lg mb-4">
                             <h4 class="font-bold text-lg">Como encontrar?</h4>
-                            <p>Você irá localizar o número do RM no <strong>boleto bancário</strong> utilizado para o pagamento da matrícula.</p>
+                            <p>Você irá localizar o número do RM no boleto bancário utilizado para o pagamento da
+                                matrícula.</p>
                         </div>
                         <div class="bg-gray-100 p-5 rounded-lg border border-gray-200">
-                            <h4 class="font-bold text-gray-800 mb-2 flex items-center text-lg">🔑 Uso do RM para Acessos Futuros</h4>
-                            <p class="mb-2">Ele servirá como <strong>login</strong> para futuras inscrições em atividades (Clubes, Mais Carbonell, Eletivas) e para a Rematrícula.</p>
-                            <p>A <strong>senha</strong> para estes acessos é específica para cada perfil de responsável (financeiro para rematrículas, pedagógico para inscrições) e será enviada quando o acesso for necessário.</p>
+                            <h4 class="font-bold text-gray-800 mb-2 flex items-center text-lg">🔑 Uso do RM para Acessos
+                                Futuros</h4>
+                            <p class="mb-2">Ele servirá como login para futuras inscrições em atividades (Clubes, Mais
+                                Carbonell, Eletivas) e para a Rematrícula.</p>
+                            <p>A senha para estes acessos é específica para cada perfil de responsável (financeiro para
+                                rematrículas, pedagógico para inscrições) e será enviada quando o acesso for necessário.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="accordion-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                <button class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
+                <button
+                    class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
                     <div class="flex items-center">
                         <span class="text-5xl mr-6">📱</span>
                         <div>
                             <span class="text-sm font-semibold text-carbonell-blue uppercase">PASSO 2</span>
-                            <h2 class="text-2xl font-semibold text-carbonell-blue">App Sophia by Layers: Nossa Comunicação</h2>
+                            <h2 class="text-2xl font-semibold text-carbonell-blue">App Sophia by Layers: Nossa
+                                Comunicação</h2>
                         </div>
                     </div>
                     <span class="arrow text-4xl text-carbonell-blue transform">+</span>
                 </button>
                 <div class="accordion-content">
-                     <div class="p-8 border-t border-gray-200 bg-gray-50 text-base">
-                         <h3 class="font-semibold text-xl mb-3">Quando receberei o convite?</h3>
-                         <p class="mb-4">O convite para o <strong>Sophia by Layers</strong>, nosso aplicativo oficial, é enviado por e-mail. O prazo para o recebimento depende de quando a matrícula foi realizada:</p>
-                         <ul class="list-disc list-inside space-y-2 mb-4 pl-4 text-lg">
-                             <li><strong>🗓️ Matrícula para o ano letivo vigente:</strong> O convite é enviado em <strong>até 24 horas</strong> após a efetivação.</li>
-                             <li><strong>🗓️ Matrícula antecipada (para o próximo ano letivo):</strong> O convite será enviado ao final do ano vigente, mais próximo ao início das aulas.</li>
-                         </ul>
-                         <div class="mb-6 bg-red-50 border-l-4 border-carbonell-red p-5 rounded-r-lg">
-                             <h4 class="font-bold text-carbonell-red flex items-center text-lg">❗️ Ponto de Atenção</h4>
-                             <p class="mt-1 text-red-900">É fundamental que <strong>todos os responsáveis</strong> pelo estudante instalem o app <strong>Sophia by Layers</strong>, pois os comunicados e as informações são diferentes para cada perfil (pedagógico e financeiro).</p>
-                         </div>
-                         <h3 class="font-semibold text-xl mb-4">Sua Ação:</h3>
-                         <ol class="list-decimal list-inside space-y-3 text-lg">
-                             <li>Abra o e-mail recebido e <strong>aceite o convite</strong>.</li>
-                             <li>Baixe o aplicativo "<strong>Sophia by Layers</strong>" na sua loja (App Store ou Google Play).</li>
-                             <li>Faça o primeiro acesso para validar sua conta. É por aqui que manteremos nosso contato mais próximo!</li>
-                         </ol>
-                     </div>
+                    <div class="p-8 border-t border-gray-200 bg-gray-50 text-base">
+                        <h3 class="font-semibold text-xl mb-3">Quando receberei o convite?</h3>
+                        <p class="mb-4">O convite para o Sophia by Layers, nosso aplicativo oficial, é enviado por
+                            e-mail. O prazo para o recebimento depende de quando a matrícula foi realizada:</p>
+                        <ul class="list-disc list-inside space-y-2 mb-4 pl-4 text-lg">
+                            <li>🗓️ Matrícula para o ano letivo vigente: O convite é enviado em até 24
+                                horas após a efetivação.</li>
+                            <li>🗓️ Matrícula antecipada (para o próximo ano letivo): O convite será
+                                enviado ao final do ano vigente, mais próximo ao início das aulas.</li>
+                        </ul>
+                        <div class="mb-6 bg-red-50 border-l-4 border-carbonell-red p-5 rounded-r-lg">
+                            <h4 class="font-bold text-carbonell-red flex items-center text-lg">❗️ Ponto de Atenção</h4>
+                            <p class="mt-1 text-red-900">É fundamental que todos os responsáveis pelo estudante instalem
+                                o app Sophia by Layers, pois os comunicados e as informações são diferentes para cada
+                                perfil (pedagógico e financeiro).</p>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-4">Sua Ação:</h3>
+                        <ol class="list-decimal list-inside space-y-3 text-lg">
+                            <li>Abra o e-mail recebido e aceite o convite.</li>
+                            <li>Baixe o aplicativo "Sophia by Layers" na sua loja (App Store ou Google
+                                Play).</li>
+                            <li>Faça o primeiro acesso para validar sua conta. É por aqui que manteremos nosso contato
+                                mais próximo!</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="accordion-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                <button class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
+                <button
+                    class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
                     <div class="flex items-center">
                         <span class="text-5xl mr-6">🎓</span>
                         <div>
                             <span class="text-sm font-semibold text-carbonell-blue uppercase">PASSO 3</span>
-                            <h2 class="text-2xl font-semibold text-carbonell-blue">E-mail do Estudante: @soucarbonell</h2>
+                            <h2 class="text-2xl font-semibold text-carbonell-blue">E-mail do Estudante: @soucarbonell
+                            </h2>
                         </div>
                     </div>
                     <span class="arrow text-4xl text-carbonell-blue transform">+</span>
                 </button>
                 <div class="accordion-content">
                     <div class="p-8 border-t border-gray-200 bg-gray-50 text-base">
-                        <p class="mb-6">Este é o passaporte do estudante para as ferramentas de aprendizagem. O acesso será liberado <strong>nas primeiras semanas de aula</strong>.</p>
-                        
+                        <p class="mb-6">Este é o passaporte do estudante para as ferramentas de aprendizagem. O acesso
+                            será liberado nas primeiras semanas de aula.</p>
+
                         <div class="bg-blue-50 border-l-4 border-carbonell-blue p-5 rounded-r-lg mb-6">
-                            <h4 class="font-bold text-lg text-carbonell-blue flex items-center mb-2">💡 Entendendo a Construção do E-mail</h4>
-                            <p class="mb-2">O e-mail institucional segue um padrão simples e previsível, composto por três partes:</p>
-                            <p class="text-center font-mono bg-white p-3 rounded-md my-3 text-gray-700 text-sm sm:text-base break-all">
-                                <span class="text-green-600 font-semibold">primeironome</span>.<span class="text-purple-600 font-semibold">últimonome</span>.<span class="text-orange-600 font-semibold">anodeformação</span>@soucarbonell.com.br
+                            <h4 class="font-bold text-lg text-carbonell-blue flex items-center mb-2">💡 Entendendo a
+                                Construção do E-mail</h4>
+                            <p class="mb-2">O e-mail institucional segue um padrão simples e previsível, composto por
+                                três partes:</p>
+                            <p
+                                class="text-center font-mono bg-white p-3 rounded-md my-3 text-gray-700 text-sm sm:text-base break-all">
+                                <span class="text-green-600 font-semibold">primeironome</span>.<span
+                                    class="text-purple-600 font-semibold">últimonome</span>.<span
+                                    class="text-orange-600 font-semibold">anodeformação</span>@soucarbonell.com.br
                             </p>
                             <ul class="list-disc list-inside space-y-1 text-gray-800">
-                                <li><strong class="text-green-700">Primeiro Nome:</strong> O primeiro nome do estudante.</li>
-                                <li><strong class="text-purple-700">Último Nome:</strong> O último sobrenome do estudante.</li>
-                                <li><strong class="text-orange-700">Ano de Formação:</strong> O ano previsto para a conclusão do Ensino Médio.</li>
+                                <li><strong class="text-green-700">Primeiro Nome:</strong> O primeiro nome do estudante.
+                                </li>
+                                <li><strong class="text-purple-700">Último Nome:</strong> O último sobrenome do
+                                    estudante.</li>
+                                <li><strong class="text-orange-700">Ano de Formação:</strong> O ano previsto para a
+                                    conclusão do Ensino Médio.</li>
                             </ul>
-                            <p class="mt-3 text-sm text-gray-600"><strong>Exemplo:</strong> Para o estudante <strong>José Almeida Santos</strong>, que se formará em <strong>2035</strong>, o e-mail será: <code class="bg-gray-200 px-1 py-0.5 rounded">jose.santos.2035@soucarbonell.com.br</code></p>
-                        </div>
-
-                        <div class="bg-yellow-50 border-l-4 border-carbonell-yellow p-5 rounded-r-lg mb-6">
-                            <h4 class="font-bold text-lg text-yellow-900 flex items-center mb-3">🧮 Simule o E-mail Institucional</h4>
-                            <p class="mb-4 text-yellow-800">Preencha os dados abaixo para ver como será o provável e-mail do estudante.</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="student-name-calc" class="block text-sm font-medium text-gray-700">Nome Completo do Estudante</label>
-                                    <input type="text" id="student-name-calc" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-carbonell-blue focus:border-carbonell-blue sm:text-lg p-2" placeholder="Ex: Maria Eduarda da Silva">
-                                </div>
-                                <div>
-                                    <label for="student-grade-calc" class="block text-sm font-medium text-gray-700">Série que será matriculado</label>
-                                    <select id="student-grade-calc" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-carbonell-blue focus:border-carbonell-blue sm:text-lg p-2">
-                                        <option value="">Selecione a série</option>
-                                        <option value="15">Infantil 2</option>
-                                        <option value="14">Infantil 3</option>
-                                        <option value="13">Infantil 4</option>
-                                        <option value="12">Infantil 5</option>
-                                        <option value="11">1º ano - Ensino Fundamental</option>
-                                        <option value="10">2º ano - Ensino Fundamental</option>
-                                        <option value="9">3º ano - Ensino Fundamental</option>
-                                        <option value="8">4º ano - Ensino Fundamental</option>
-                                        <option value="7">5º ano - Ensino Fundamental</option>
-                                        <option value="6">6º ano - Ensino Fundamental</option>
-                                        <option value="5">7º ano - Ensino Fundamental</option>
-                                        <option value="4">8º ano - Ensino Fundamental</option>
-                                        <option value="3">9º ano - Ensino Fundamental</option>
-                                        <option value="2">1ª série - Ensino Médio</option>
-                                        <option value="1">2ª série - Ensino Médio</option>
-                                        <option value="0">3ª série - Ensino Médio</option>
-                                    </select>
-                                </div>
-                                <button id="calculate-email-btn" class="w-full sm:w-auto bg-carbonell-blue text-white font-semibold py-2 px-6 rounded-lg hover:bg-opacity-90 transition flex items-center justify-center text-lg">Calcular E-mail</button>
-                            </div>
-                            <div id="email-calc-result" class="hidden mt-4 bg-white p-4 rounded-md border border-gray-200">
-                            </div>
+                            <p class="mt-3 text-sm text-gray-600"><strong>Exemplo:</strong> Para o estudante José
+                                Almeida Santos, que se formará em 2035, o e-mail será: <code
+                                    class="bg-gray-200 px-1 py-0.5 rounded">jose.santos.2035@soucarbonell.com.br</code>
+                            </p>
                         </div>
 
                         <h4 class="font-semibold text-xl mb-3">Como o acesso é entregue?</h4>
                         <div class="tabs-container" data-tab-group="email">
-                            <div class="flex border-b border-gray-300 mb-6">
-                                <button class="tab-btn py-3 px-5 font-semibold text-gray-600 border-b-2 border-transparent transition active text-lg" data-target="infantil-5-email">Infantil ao 5º ano</button>
-                                <button class="tab-btn py-3 px-5 font-semibold text-gray-600 border-b-2 border-transparent transition text-lg" data-target="sexto-plus-email">A partir do 6º ano</button>
+                            <div class="flex mb-6 space-x-2">
+                                <button class="tab-btn flex-1 py-3 px-5 rounded-md transition text-lg active"
+                                    data-target="infantil-5-email">Infantil ao 5º ano</button>
+                                <button
+                                    class="tab-btn flex-1 py-3 px-5 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold transition text-lg"
+                                    data-target="sexto-plus-email">A partir do 6º ano</button>
                             </div>
 
                             <div id="infantil-5-email" class="tab-content active">
-                                <p class="mb-3">Entregaremos uma <strong>etiqueta adesiva, colada na agenda física</strong>, com o e-mail e a senha prontinhos para uso.</p>
+                                <p class="mb-3">Entregaremos uma etiqueta adesiva, colada na agenda física, com o e-mail
+                                    e a senha prontinhos para uso.</p>
                                 <div class="bg-gray-100 p-5 rounded-lg border border-gray-200">
                                     <p class="font-semibold text-md text-gray-700">Fórmula da Senha Padrão:</p>
-                                    <p class="text-lg text-gray-900">As <strong>duas primeiras letras do nome</strong> + <strong>dia, mês e ano</strong> de aniversário (DDMMAA) + <strong>o símbolo @</strong>.</p>
-                                    <p class="text-md mt-2 text-gray-600">Exemplo para <strong>Ma</strong>ria (15/03/<strong>2015</strong>): <code class="bg-gray-200 px-2 py-1 rounded text-lg">ma150315@</code></p>
-                                    <p class="text-sm mt-3 text-gray-500">(Atenção: este padrão de senha, com o símbolo @, será adotado a partir de 2026.)</p>
+                                    <p class="text-lg text-gray-900">As duas primeiras letras do nome +
+                                        dia, mês e anode aniversário (DDMMAA) + o símbolo
+                                        @.</p>
+                                    <p class="text-md mt-2 text-gray-600">Exemplo para Maria
+                                        (15/03/2015): <code
+                                            class="bg-gray-200 px-2 py-1 rounded text-lg">ma150315@</code></p>
+                                    <p class="text-sm mt-3 text-gray-500">(Atenção: este padrão de senha, com o símbolo
+                                        @, será adotado a partir de 2026.)</p>
                                 </div>
                             </div>
                             <div id="sexto-plus-email" class="tab-content">
-                                <p>Nossa equipe de TI, com o apoio do PANC (Programa de Estudante Novo do Carbonell), irá pessoalmente orientar os novos estudantes em sala para que realizem o primeiro acesso de forma segura.</p>
+                                <p>Nossa equipe de TI, com o apoio do PANC (Programa de Estudante Novo do Carbonell),
+                                    irá pessoalmente orientar os novos estudantes em sala para que realizem o primeiro
+                                    acesso de forma segura.</p>
                             </div>
                         </div>
                     </div>
@@ -222,94 +241,128 @@
             </div>
 
             <div class="accordion-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                <button class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
+                <button
+                    class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
                     <div class="flex items-center">
                         <span class="text-5xl mr-6">📸</span>
                         <div>
                             <span class="text-sm font-semibold text-carbonell-blue uppercase">PASSO 4</span>
-                            <h2 class="text-2xl font-semibold text-carbonell-blue">Portfólio Digital (Ed. Infantil)</h2>
+                            <h2 class="text-2xl font-semibold text-carbonell-blue">Portfólio Digital (Apenas Ed.
+                                Infantil)</h2>
                         </div>
                     </div>
                     <span class="arrow text-4xl text-carbonell-blue transform">+</span>
                 </button>
                 <div class="accordion-content">
                     <div class="p-8 border-t border-gray-200 bg-gray-50 text-base">
-                        <p class="mb-4">As turmas da Educação Infantil possuem um portfólio online (em um Google Site) onde a professora registra momentos importantes. O acesso é exclusivo para a família e <strong>requer o uso do e-mail institucional do estudante</strong>.</p>
-                        
+                        <p class="mb-4">As turmas da Educação Infantil possuem um portfólio online (em um Google Site)
+                            onde a professora registra momentos importantes. O acesso é exclusivo para a família e
+                            requer o uso do e-mail institucional do estudante.</p>
+
                         <div class="my-6">
-                            <img src="https://placehold.co/600x250/e0f2fe/1A3A6A?text=Momentos+da+Turma" alt="Ilustração do portfólio pedagógico" class="w-full h-auto max-w-xl mx-auto rounded-lg shadow-sm">
+                            <img src="https://placehold.co/600x250/e0f2fe/1A3A6A?text=Momentos+da+Turma"
+                                alt="Ilustração do portfólio pedagógico"
+                                class="w-full h-auto max-w-xl mx-auto rounded-lg shadow-sm">
                         </div>
 
                         <h3 class="font-semibold text-xl mb-4">Como Acessar o Portfólio - Passo a Passo:</h3>
                         <ol class="list-decimal list-inside space-y-4 text-lg">
                             <li>
-                                <strong>Adicione a conta do estudante no seu dispositivo:</strong> Antes de tudo, a conta `@soucarbonell.com.br` do estudante precisa estar logada no seu celular ou computador.
+                                <strong>Adicione a conta do estudante no seu dispositivo:</strong> Antes de tudo, a
+                                conta `@soucarbonell.com.br` do estudante precisa estar logada no seu celular ou
+                                computador.
                                 <ul class="list-disc list-inside mt-2 ml-4 text-gray-700 text-base">
-                                    <li><strong>📱 No celular:</strong> Vá em "Configurações" > "Contas" > "Adicionar Conta Google".</li>
-                                    <li><strong>💻 No computador (recomendado: Chrome):</strong> Clique no seu ícone de perfil no navegador e selecione "Adicionar outra conta".</li>
+                                    <li><strong>📱 No celular:</strong> Vá em "Configurações" > "Contas" > "Adicionar
+                                        Conta Google".</li>
+                                    <li><strong>💻 No computador (recomendado: Chrome):</strong> Clique no seu ícone de
+                                        perfil no navegador e selecione "Adicionar outra conta".</li>
                                 </ul>
                             </li>
                             <li>
-                                <strong>Encontre o link no App Sophia by Layers:</strong> A coordenação enviará o link exclusivo do portfólio da turma através de um comunicado no Layers.
+                                <strong>Encontre o link no App Sophia by Layers:</strong> A coordenação enviará o link
+                                exclusivo do portfólio da turma através de um comunicado no Layers.
                             </li>
-                             <li>
-                                <strong>Clique no link e escolha a conta certa:</strong> Ao clicar no link, o Google poderá pedir para você escolher com qual conta deseja continuar. <strong>É essencial que você selecione a conta do estudante (`@soucarbonell.com.br`)</strong> e não a sua conta pessoal.
+                            <li>
+                                <strong>Clique no link e escolha a conta certa:</strong> Ao clicar no link, o Google
+                                poderá pedir para você escolher com qual conta deseja continuar. É essencial que você
+                                selecione a conta do estudante (`@soucarbonell.com.br`) e não a sua conta pessoal.
                             </li>
                         </ol>
                         <div class="mt-6 bg-red-50 border-l-4 border-carbonell-red text-red-900 p-5 rounded-r-lg">
                             <h4 class="font-bold text-lg">Atenção ao "Acesso Negado"!</h4>
-                            <p class="mt-1">Se você vir uma mensagem de erro, quase sempre o motivo é que o navegador tentou usar a sua conta pessoal por padrão. Verifique no canto superior direito da página qual perfil está logado e troque para o perfil do estudante.</p>
+                            <p class="mt-1">Se você vir uma mensagem de erro, quase sempre o motivo é que o navegador
+                                tentou usar a sua conta pessoal por padrão. Verifique no canto superior direito da
+                                página qual perfil está logado e troque para o perfil do estudante.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="accordion-item bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
-                <button class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
+                <button
+                    class="accordion-header w-full text-left p-6 flex justify-between items-center transition hover:bg-blue-50 focus:outline-none">
                     <div class="flex items-center">
                         <span class="text-5xl mr-6">📚</span>
                         <div>
                             <span class="text-sm font-semibold text-carbonell-blue uppercase">PASSO 5</span>
-                            <h2 class="text-2xl font-semibold text-carbonell-blue">Plataforma SAS: Livros e Atividades</h2>
+                            <h2 class="text-2xl font-semibold text-carbonell-blue">Plataforma SAS: Livros e Atividades
+                            </h2>
                         </div>
                     </div>
                     <span class="arrow text-4xl text-carbonell-blue transform">+</span>
                 </button>
                 <div class="accordion-content">
                     <div class="p-8 border-t border-gray-200 bg-gray-50 text-base">
-                        <p class="mb-4">O acesso à plataforma SAS, onde estão os materiais didáticos, é feito pelo portal: <a href="https://portalsas.com.br" target="_blank" class="text-carbonell-blue font-semibold hover:underline">portalsas.com.br</a></p>
-                        <p class="mb-4">▸ <strong>Login:</strong> É sempre o <strong>e-mail @soucarbonell.com.br</strong> do estudante.</p>
+                        <p class="mb-4">O acesso à plataforma SAS, onde estão os materiais didáticos, é feito pelo
+                            portal: <a href="https://portalsas.com.br" target="_blank"
+                                class="text-carbonell-blue font-semibold hover:underline">portalsas.com.br</a></p>
+                        <p class="mb-4">▸ <strong>Login:</strong> É sempre o e-mail @soucarbonell.com.br
+                            do estudante.</p>
                         <p class="mb-4">▸ <strong>Senha:</strong></p>
 
                         <div class="tabs-container" data-tab-group="sas">
-                            <div class="flex border-b border-gray-300 mb-6">
-                                <button class="tab-btn py-3 px-5 font-semibold text-gray-600 border-b-2 border-transparent transition active text-lg" data-target="infantil-5-sas">Infantil ao 5º ano</button>
-                                <button class="tab-btn py-3 px-5 font-semibold text-gray-600 border-b-2 border-transparent transition text-lg" data-target="sexto-plus-sas">A partir do 6º ano</button>
+                            <div class="flex mb-6 space-x-2">
+                                <button class="tab-btn flex-1 py-3 px-5 rounded-md transition text-lg active"
+                                    data-target="infantil-5-sas">Infantil ao 5º ano</button>
+                                <button
+                                    class="tab-btn flex-1 py-3 px-5 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold transition text-lg"
+                                    data-target="sexto-plus-sas">A partir do 6º ano</button>
                             </div>
-                             <div id="infantil-5-sas" class="tab-content active">
-                                 <p class="mb-3">A senha estará na mesma etiqueta da agenda e é <strong>diferente da senha do e-mail</strong>.</p>
-                                  <div class="bg-gray-100 p-5 rounded-lg border border-gray-200 mb-4">
-                                     <p class="font-semibold text-md text-gray-700">Fórmula da Senha Padrão:</p>
-                                     <p class="text-lg text-gray-900">As <strong>duas primeiras letras do nome</strong> + <strong>dia e mês</strong> de aniversário (DDMM) + <strong>*</strong> (asterisco).</p>
-                                     <p class="text-md mt-2 text-gray-600">Exemplo para <strong>Ma</strong>ria (15/03): <code class="bg-gray-200 px-2 py-1 rounded text-lg">ma1503*</code></p>
-                                 </div>
-                                 <div class="bg-emerald-50 border-l-4 border-emerald-400 text-emerald-900 p-5 rounded-r-lg">
-                                     <h4 class="font-bold text-lg">Por que senhas diferentes?</h4>
-                                     <p class="mt-1">Ensinar a importância de não repetir senhas é parte do nosso aprendizado sobre cidadania e responsabilidade digital.</p>
-                                 </div>
-                             </div>
+                            <div id="infantil-5-sas" class="tab-content active">
+                                <p class="mb-3">A senha estará na mesma etiqueta da agenda e é diferente da senha do
+                                    e-mail.</p>
+                                <div class="bg-gray-100 p-5 rounded-lg border border-gray-200 mb-4">
+                                    <p class="font-semibold text-md text-gray-700">Fórmula da Senha Padrão:</p>
+                                    <p class="text-lg text-gray-900">As duas primeiras letras do nome +
+                                        dia e mês de aniversário (DDMM) + *
+                                        (asterisco).</p>
+                                    <p class="text-md mt-2 text-gray-600">Exemplo para Maria (15/03):
+                                        <code class="bg-gray-200 px-2 py-1 rounded text-lg">ma1503*</code>
+                                    </p>
+                                </div>
+                                <div
+                                    class="bg-emerald-50 border-l-4 border-emerald-400 text-emerald-900 p-5 rounded-r-lg">
+                                    <h4 class="font-bold text-lg">Por que senhas diferentes?</h4>
+                                    <p class="mt-1">Ensinar a importância de não repetir senhas é parte do nosso
+                                        aprendizado sobre cidadania e responsabilidade digital.</p>
+                                </div>
+                            </div>
                             <div id="sexto-plus-sas" class="tab-content">
-                                 <p class="mb-2">No primeiro acesso, o estudante usará a senha provisória <code class="bg-gray-200 px-2 py-1 rounded text-lg">sas@123</code>.</p>
-                                 <p class="mb-2">O próprio sistema do Portal SAS enviará um e-mail para o @soucarbonell.com.br do estudante com as orientações para a troca de senha.</p>
-                                 <p>A qualquer momento, o estudante pode clicar em <strong>"Esqueci minha senha"</strong> no portal para redefini-la.</p>
-                             </div>
+                                <p class="mb-2">No primeiro acesso, o estudante usará a senha provisória <code
+                                        class="bg-gray-200 px-2 py-1 rounded text-lg">sas@123</code>.</p>
+                                <p class="mb-2">O próprio sistema do Portal SAS enviará um e-mail para o
+                                    @soucarbonell.com.br do estudante com as orientações para a troca de senha.</p>
+                                <p>A qualquer momento, o estudante pode clicar em "Esqueci minha senha"
+                                    no portal para redefini-la.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="accordion-item rounded-xl shadow-md border border-sky-400 overflow-hidden">
-                <button class="accordion-header w-full text-left p-6 flex justify-between items-center transition bg-sky-100 hover:bg-sky-200 focus:outline-none">
+                <button
+                    class="accordion-header w-full text-left p-6 flex justify-between items-center transition bg-sky-100 hover:bg-sky-200 focus:outline-none">
                     <div class="flex items-center">
                         <span class="text-5xl mr-6">🚀</span>
                         <div>
@@ -320,38 +373,46 @@
                     <span class="arrow text-4xl text-carbonell-blue transform">+</span>
                 </button>
                 <div class="accordion-content">
-                       <div class="p-8 border-t border-sky-200 bg-sky-50 text-base">
-                            <h3 class="font-semibold text-xl mb-3 text-sky-900">Jornada Concluída! E agora?</h3>
-                            <p class="mb-4 text-lg">Parabéns por concluir a jornada de acessos! Com o e-mail @soucarbonell configurado, o estudante já pode explorar o <strong>Portal do Estudante</strong>.</p>
-                            <p class="mb-4">Lá, ele encontrará <strong>tutoriais e demais informações exclusivas para a comunidade Carbonell</strong>.</p>
-                            <a href="http://www.portal.colegiocarbonell.com.br" class="inline-block bg-carbonell-blue text-white font-semibold py-3 px-6 rounded-lg hover:bg-opacity-90 transition text-lg">Acessar Portal do Estudante</a>
-                       </div>
+                    <div class="p-8 border-t border-sky-200 bg-sky-50 text-base">
+                        <h3 class="font-semibold text-xl mb-3 text-sky-900">Jornada Concluída! E agora?</h3>
+                        <p class="mb-4 text-lg">Parabéns por concluir a jornada de acessos! Com o e-mail @soucarbonell
+                            configurado, o estudante já pode explorar o Portal do Estudante.</p>
+                        <p class="mb-4">Lá, ele encontrará tutoriais e demais informações exclusivas para a comunidade
+                            Carbonell.</p>
+                        <a href="https://script.google.com/a/macros/colegiocarbonell.com.br/s/AKfycbzLlUj9FStopczTIP-XJudasuWJCV-NtUs3yfsXSAlR1cACwFAZP96lyVWT7heQZOf4/exec"
+                            class="inline-block bg-carbonell-blue text-white font-semibold py-3 px-6 rounded-lg hover:bg-opacity-90 transition text-lg">Acessar
+                            Portal do Estudante</a>
+                    </div>
                 </div>
             </div>
 
             <div class="pt-8 space-y-8">
-                 <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 text-base">
-                    <h3 class="font-semibold text-2xl text-carbonell-blue mb-3 flex items-center">👥 Uma Nota Sobre as Senhas dos Responsáveis</h3>
-                    <p class="text-gray-600">Durante o ano letivo, para ações específicas, os responsáveis receberão senhas por e-mail apenas quando forem necessárias para:</p>
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 text-base">
+                    <h3 class="font-semibold text-2xl text-carbonell-blue mb-3 flex items-center">👥 Uma Nota Sobre as
+                        Senhas dos Responsáveis</h3>
+                    <p class="text-gray-600">Durante o ano letivo, para ações específicas, os responsáveis receberão
+                        senhas por e-mail apenas quando forem necessárias para:</p>
                     <ul class="list-disc list-inside mt-3 space-y-2 text-gray-700 text-lg">
-                        <li><strong>Responsável Pedagógico:</strong> Realizar inscrições em atividades como clubes e eletivas.</li>
-                        <li><strong>Responsável Financeiro:</strong> Acessar o portal de rematrícula no período adequado.</li>
+                        <li><strong>Responsável Pedagógico:</strong> Realizar inscrições em atividades como clubes e
+                            eletivas.</li>
+                        <li><strong>Responsável Financeiro:</strong> Acessar o portal de rematrícula no período
+                            adequado.</li>
                     </ul>
                 </div>
-                 <div class="bg-carbonell-blue text-white p-8 rounded-xl shadow-lg">
+                <div class="bg-carbonell-blue text-white p-8 rounded-xl shadow-lg">
                     <h3 class="font-semibold text-2xl mb-3 flex items-center">❓ Precisa de Ajuda?</h3>
-                    <p class="opacity-90 text-lg">Ficou com alguma dúvida? O caminho mais fácil para falar conosco é pelo canal da <strong>Coordenação Pedagógica</strong> no aplicativo <strong>Sophia by Layers</strong>. Nossa equipe está pronta para ajudar e, se preciso, acionará o suporte de TI.</p>
+                    <p class="opacity-90 text-lg">Caso tenha alguma dúvida, o canal de comunicação mais eficiente é o aplicativo Sophia by Layers. Disponibilizamos canais específicos para cada segmento, como Secretaria, Direção, Cantina, Esportes e Sala de Leitura, garantindo que sua mensagem chegue ao setor correto. Nossa equipe está preparada para atendê-lo(a) e, se necessário, acionará nosso suporte de TI.</p>
                 </div>
             </div>
-             <footer class="text-center mt-16 py-6">
+            <footer class="text-center mt-16 py-6">
                 <p class="text-gray-500">Colégio Carbonell © 2025</p>
             </footer>
         </main>
     </div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            
+
             // --- Accordion Logic ---
             const accordionHeaders = document.querySelectorAll('.accordion-header');
             accordionHeaders.forEach(header => {
@@ -360,9 +421,9 @@
                     const isOpening = !header.classList.contains('open');
 
                     document.querySelectorAll('.accordion-header.open').forEach(openHeader => {
-                        if(openHeader !== header) {
-                           openHeader.classList.remove('open');
-                           openHeader.nextElementSibling.classList.remove('open');
+                        if (openHeader !== header) {
+                            openHeader.classList.remove('open');
+                            openHeader.nextElementSibling.classList.remove('open');
                         }
                     });
 
@@ -385,13 +446,18 @@
                         const targetId = tab.dataset.target;
                         const targetContent = container.querySelector(`#${targetId}`);
 
-                        container.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+                        container.querySelectorAll('.tab-btn').forEach(t => {
+                            t.classList.remove('active');
+                            t.classList.add('bg-gray-200', 'hover:bg-gray-300', 'text-gray-700', 'font-semibold');
+                        });
                         tab.classList.add('active');
-                        
+                        tab.classList.remove('bg-gray-200', 'hover:bg-gray-300', 'text-gray-700', 'font-semibold');
+
+
                         container.querySelectorAll('.tab-content').forEach(content => {
                             content.classList.remove('active');
                         });
-                        
+
                         if (targetContent) {
                             targetContent.classList.add('active');
                         }
@@ -399,52 +465,11 @@
                 });
             });
 
-            // --- Email Calculator Logic ---
-            const calculateBtn = document.getElementById('calculate-email-btn');
-            const nameCalcInput = document.getElementById('student-name-calc');
-            const gradeCalcSelect = document.getElementById('student-grade-calc');
-            const resultCalcDiv = document.getElementById('email-calc-result');
-
-            const normalizeText = (text) => {
-                if (!text) return '';
-                return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-            };
-
-            calculateBtn.addEventListener('click', () => {
-                const fullName = nameCalcInput.value.trim();
-                const yearsToGraduateValue = gradeCalcSelect.value;
-
-                if (!fullName || !yearsToGraduateValue) {
-                    resultCalcDiv.innerHTML = `<p class="text-red-600 font-semibold">Por favor, preencha o nome completo e selecione a série.</p>`;
-                    resultCalcDiv.classList.remove('hidden');
-                    return;
-                }
-
-                const nameParts = fullName.split(' ').filter(part => part);
-                if (nameParts.length < 2) {
-                    resultCalcDiv.innerHTML = `<p class="text-red-600 font-semibold">Por favor, insira o nome completo (pelo menos um nome e um sobrenome).</p>`;
-                    resultCalcDiv.classList.remove('hidden');
-                    return;
-                }
-
-                const firstName = normalizeText(nameParts[0]);
-                const lastName = normalizeText(nameParts[nameParts.length - 1]);
-
-                const currentYear = new Date().getFullYear();
-                const yearsToGraduate = parseInt(yearsToGraduateValue, 10);
-                const graduationYear = currentYear + yearsToGraduate;
-
-                const probableEmail = `${firstName}.${lastName}.${graduationYear}@soucarbonell.com.br`;
-
-                resultCalcDiv.innerHTML = `
-                    <p class="font-semibold text-gray-800">O provável e-mail será:</p>
-                    <p class="font-mono text-carbonell-blue bg-gray-100 p-3 my-2 rounded-md text-center text-lg break-all">${probableEmail}</p>
-                    <p class="text-xs text-gray-600 mt-3"><strong>Observação:</strong> Este é um e-mail provável. Nomes com semelhanças ou duplicidades podem precisar de um ajuste manual, que será estudado e autorizado pela nossa equipe de TI.</p>
-                `;
-                resultCalcDiv.classList.remove('hidden');
-            });
         });
     </script>
 
 </body>
+
 </html>
+
+
