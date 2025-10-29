@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <!--
-        Arquivo: templates/login.html
-        Descrição: Página de login para o Portal de Acessos do Colégio Carbonell.
+        templates/login.html
 
-        Objetivo dos comentários:
-        - Documentar a estrutura do template para desenvolvedores e para a equipe que
-            possa personalizar textos/estilos.
-        - Explicar o uso das mensagens flash do Flask e os nomes dos campos do formulário
-            (importante para integração com o backend Flask).
+        Template de página de login do sistema "Jornada DIGITAL @soucarbonell".
 
-        Observações de manutenção:
-        - As imagens e o CSS são servidos a partir da pasta `static/` via `url_for('static', ...)`.
-        - Se for usado CSRF (ex.: Flask-WTF), adicione o token dentro do <form>.
-        - Ao alterar o atributo `name` dos inputs, atualize o código do servidor que lê
-            `request.form['codigo']` / `request.form['senha']`.
+        Propósito:
+        - Permitir que o visitante escolha entre o perfil "Responsável" (login via API
+            Sophia com código/RM e senha) ou "Estudante" (autenticação via Google OAuth).
+
+        Estrutura e pontos importantes:
+        - O formulário de responsável faz POST para a rota Flask `url_for('login')`.
+        - O botão de estudante redireciona para a rota Flask `url_for('login_google')`.
+        - Mensagens flash (erros/alertas) são exibidas usando o bloco Jinja2 `get_flashed_messages`.
+        - IDs/Classes usados pelo JavaScript (não alterar sem atualizar o script):
+                * `btn-responsavel`  -> botão que mostra o formulário do responsável
+                * `btn-estudante`    -> botão que mostra o formulário do estudante
+                * `form-responsavel` -> container do formulário do responsável
+                * `form-estudante`   -> container do formulário do estudante
+
+        Notas de manutenção:
+        - Ao alterar IDs ou nomes de classes referenciados no script abaixo, atualize
+            os seletores correspondentes no bloco <script> para manter o comportamento.
+        - Imagens e estilos estão em `static/` (ex.: `static/img/logo.png`, `static/style.css`).
+        - Esta documentação foi adicionada apenas como comentário; nenhuma lógica
+            ou marcação visível ao usuário foi alterada.
 -->
+
 <head>
     <meta charset="UTF--8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,59 +37,80 @@
 <body>
     <div class="login-container">
         
-        <!--
-            Bloco de logo: altera a imagem em static/img/logo.png caso necessário.
-            - A tag `url_for('static', filename='img/logo.png')` garante que o Flask
-              resolva o caminho correto para arquivos estáticos.
-        -->
         <div class="login-logo-container">
             <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Colégio Carbonell">
         </div>
 
-        <!-- Títulos e instruções visuais para o usuário -->
         <h1>Jornada DIGITAL @soucarbonell</h1>
-        <p>Por favor, utilize seu código e senha para continuar.</p>
+        <p>Por favor, selecione seu perfil para continuar.</p>
 
-        <!--
-            Mensagens flash do Flask
-            - Ex.: flash(('danger', 'Usuário ou senha inválidos')) no servidor.
-            - `with_categories=true` retorna tuplas (categoria, mensagem).
-            - A classe aplicada aqui (`flash-message flash-danger`) é apenas um exemplo;
-              ajuste estilos em `static/style.css` conforme a sua convenção de classes.
-        -->
+        <div class="login-choice-container">
+            <button type="button" id="btn-responsavel" class="btn-choice">Sou responsável</button>
+            <button type="button" id="btn-estudante" class="btn-choice">Sou estudante</button>
+        </div>
+
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <!--
-                        Se desejar estilos diferentes por categoria, use a variável
-                        `category` para condicionar classes (ex.: flash-{{ category }}).
-                    -->
                     <div class="flash-message flash-danger">{{ message }}</div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
 
-        <!--
-            Formulário de login
-            - Método: POST (os dados são enviados ao servidor via request.form).
-            - Campos esperados no backend:
-                request.form['codigo'] -> identificador do usuário (RM, código, etc.)
-                request.form['senha']  -> senha do usuário
-            - Se estiver usando Flask-WTF ou outro sistema CSRF, inclua aqui o campo
-              {{ form.csrf_token }} ou {{ csrf_token() }} conforme a implementação.
-            - Os labels têm a classe `sr-only` para acessibilidade (visíveis por leitores
-              de tela, ocultos visualmente). Preserve-os para acessibilidade.
-        -->
-        <form method="post" class="login-form">
-            <label for="codigo" class="sr-only">Código de Usuário</label>
-            <input type="text" id="codigo" name="codigo" placeholder="Código de Usuário" required>
-            
-            <label for="senha" class="sr-only">Senha</label>
-            <input type="password" id="senha" name="senha" placeholder="Senha" required>
-            
-            <!-- Botão de envio. Ao clicar, o formulário é enviado ao endpoint atual -->
-            <button type="submit">Entrar</button>
-        </form>
+        <div id="form-responsavel" class="form-container" style="display: none;">
+            <p class="form-instruction">Use seu código (RM) e senha para entrar.</p>
+            <form method="post" action="{{ url_for('login') }}" class="login-form">
+                <label for="codigo" class="sr-only">Código de Usuário</label>
+                <input type="text" id="codigo" name="codigo" placeholder="Código de Usuário" required>
+                
+                <label for="senha" class="sr-only">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+
+        <div id="form-estudante" class="form-container" style="display: none;">
+            <p class="form-instruction">Use sua conta Google @soucarbonell.</p>
+            <a href="{{ url_for('login_google') }}" class="btn-google-login">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
+                Entrar com Google
+            </a>
+        </div>
+
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleciona os botões e os containers de formulário
+            const btnResponsavel = document.getElementById('btn-responsavel');
+            const btnEstudante = document.getElementById('btn-estudante');
+            const formResponsavel = document.getElementById('form-responsavel');
+            const formEstudante = document.getElementById('form-estudante');
+
+            // Evento ao clicar em "Sou responsável"
+            btnResponsavel.addEventListener('click', function() {
+                // Exibe o formulário do responsável e oculta o do estudante
+                formResponsavel.style.display = 'block';
+                formEstudante.style.display = 'none';
+
+                // Atualiza o estilo "ativo" dos botões
+                btnResponsavel.classList.add('active');
+                btnEstudante.classList.remove('active');
+            });
+
+            // Evento ao clicar em "Sou estudante"
+            btnEstudante.addEventListener('click', function() {
+                // Exibe o formulário do estudante e oculta o do responsável
+                formEstudante.style.display = 'block';
+                formResponsavel.style.display = 'none';
+
+                // Atualiza o estilo "ativo" dos botões
+                btnEstudante.classList.add('active');
+                btnResponsavel.classList.remove('active');
+            });
+        });
+    </script>
+
 </body>
 </html>
