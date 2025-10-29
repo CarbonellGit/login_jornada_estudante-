@@ -1,4 +1,4 @@
-# Portal do Aluno - Aplicação Web com Flask
+# Portal do @soucarbonell - Aplicação Web com Flask
 
 ## 1. Visão Geral
 
