@@ -54,7 +54,7 @@ body {
 
 /* Estilo para a imagem da logo */
 .login-logo-container img {
-    max-width: 200px;
+    max-width: 350px;
     height: auto;
     margin-bottom: 1rem;
 }
@@ -122,4 +122,91 @@ body {
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
+}
+
+/*
+--- ESTILOS ADICIONADOS PARA LOGIN HÍBRIDO ---
+*/
+
+/* Container para os botões de escolha de perfil */
+.login-choice-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espaço entre os botões */
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo base dos botões de escolha */
+.btn-choice {
+    flex-grow: 1; /* Faz os botões ocuparem o espaço disponível */
+    padding: 12px 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid #ccc;
+    background-color: #f8f9fa;
+    color: var(--carbonell-azul-marinho);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Efeito hover (passar o mouse) */
+.btn-choice:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+/* Estilo do botão de escolha ATIVO (quando selecionado) */
+.btn-choice.active {
+    background-color: var(--carbonell-azul-escuro);
+    color: var(--carbonell-branco);
+    border-color: var(--carbonell-azul-escuro);
+}
+
+/* Container que agrupa os formulários (para ocultar/exibir) */
+.form-container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Parágrafo de instrução dentro de cada formulário */
+.form-instruction {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+/*
+--- Estilo para o Botão de Login do Google ---
+*/
+.btn-google-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* Espaço entre o logo e o texto */
+
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    color: #444; /* Cor de texto padrão do Google */
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    text-decoration: none; /* Remove sublinhado do link */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-google-login img {
+    /* Garante que a imagem do logo não seja afetada */
+    width: 20px;
+    height: 20px;
+}
+
+.btn-google-login:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
